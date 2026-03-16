@@ -41,7 +41,7 @@ export function CommentForm({ issueId }: CommentFormProps) {
         <h3 className="text-sm font-medium">Adicionar comentário</h3>
       </div>
 
-      <div className="p-4 space-y-3">
+      <div className="space-y-3 p-4">
         <input type="hidden" {...register("issueId")} />
 
         {/* TODO: substituir por @uiw/react-md-editor */}
@@ -49,11 +49,9 @@ export function CommentForm({ issueId }: CommentFormProps) {
           {...register("body")}
           rows={5}
           placeholder="Escreva um comentário em Markdown..."
-          className="flex min-h-[100px] w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring resize-y"
+          className="flex min-h-[100px] w-full resize-y rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         />
-        {errors.body && (
-          <p className="text-xs text-destructive">{errors.body.message}</p>
-        )}
+        {errors.body && <p className="text-xs text-destructive">{errors.body.message}</p>}
 
         <div className="flex justify-end">
           <Button type="submit" disabled={isSubmitting} size="sm">

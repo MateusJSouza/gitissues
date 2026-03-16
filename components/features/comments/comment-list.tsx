@@ -25,9 +25,7 @@ export function CommentList({ comments }: CommentListProps) {
             <strong>{comment.author.name}</strong>
             <span className="text-muted-foreground">
               comentou em{" "}
-              {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(
-                comment.createdAt
-              )}
+              {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(comment.createdAt)}
             </span>
           </div>
 

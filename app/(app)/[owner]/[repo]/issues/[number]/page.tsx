@@ -74,15 +74,13 @@ export default async function IssueDetailPage({ params }: IssueDetailPageProps) 
           <CommentList comments={issue.comments} currentUserId={session?.user?.id} />
 
           {/* Formulário de novo comentário (requer autenticação) */}
-          {session?.user && (
-            <CommentForm issueId={issue.id} />
-          )}
+          {session?.user && <CommentForm issueId={issue.id} />}
         </div>
 
         {/* Sidebar: assignee, labels */}
         <aside className="space-y-4">
           <div className="rounded-lg border p-4 text-sm">
-            <h3 className="mb-2 font-semibold text-muted-foreground uppercase text-xs tracking-wide">
+            <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Assignees
             </h3>
             {issue.assignee ? (
@@ -103,7 +101,7 @@ export default async function IssueDetailPage({ params }: IssueDetailPageProps) 
           </div>
 
           <div className="rounded-lg border p-4 text-sm">
-            <h3 className="mb-2 font-semibold text-muted-foreground uppercase text-xs tracking-wide">
+            <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Labels
             </h3>
             {issue.labels.length > 0 ? (

@@ -48,9 +48,7 @@ export async function createComment(
       },
     });
 
-    revalidatePath(
-      `/${issue.repository.ownerId}/${issue.repository.name}/issues/${issue.number}`
-    );
+    revalidatePath(`/${issue.repository.ownerId}/${issue.repository.name}/issues/${issue.number}`);
 
     return { success: true, data: comment as CommentWithAuthor };
   } catch (error) {

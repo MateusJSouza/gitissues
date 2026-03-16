@@ -7,7 +7,10 @@
       "Bash(pnpm add:*)",
       "Bash(pnpm db:generate)",
       "Bash(pnpm build:*)",
-      "Bash(node -e \"console.log\\(require\\(''./node_modules/next/package.json''\\).version\\)\")"
+      "Bash(node -e \"console.log\\(require\\(''./node_modules/next/package.json''\\).version\\)\")",
+      "Bash(pnpm exec:*)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm lint:*)"
     ]
   }
 }

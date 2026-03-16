@@ -53,9 +53,7 @@ export async function createIssue(
         repositoryId,
         authorId: session.user.id,
         assigneeId: assigneeId ?? null,
-        labels: labelIds?.length
-          ? { connect: labelIds.map((id) => ({ id })) }
-          : undefined,
+        labels: labelIds?.length ? { connect: labelIds.map((id) => ({ id })) } : undefined,
       },
       include: {
         author: { select: { id: true, name: true, image: true, githubUsername: true } },
@@ -126,7 +124,9 @@ export async function updateIssue(
     });
 
     revalidatePath(`/${existing.repository.ownerId}/${existing.repository.name}/issues`);
-    revalidatePath(`/${existing.repository.ownerId}/${existing.repository.name}/issues/${existing.number}`);
+    revalidatePath(
+      `/${existing.repository.ownerId}/${existing.repository.name}/issues/${existing.number}`
+    );
 
     return { success: true, data: issue as IssueWithRelations };
   } catch (error) {
@@ -161,7 +161,9 @@ export async function closeIssue(id: string): Promise<ActionResult<{ id: string 
     });
 
     revalidatePath(`/${existing.repository.ownerId}/${existing.repository.name}/issues`);
-    revalidatePath(`/${existing.repository.ownerId}/${existing.repository.name}/issues/${existing.number}`);
+    revalidatePath(
+      `/${existing.repository.ownerId}/${existing.repository.name}/issues/${existing.number}`
+    );
 
     return { success: true, data: { id } };
   } catch (error) {
@@ -196,7 +198,9 @@ export async function reopenIssue(id: string): Promise<ActionResult<{ id: string
     });
 
     revalidatePath(`/${existing.repository.ownerId}/${existing.repository.name}/issues`);
-    revalidatePath(`/${existing.repository.ownerId}/${existing.repository.name}/issues/${existing.number}`);
+    revalidatePath(
+      `/${existing.repository.ownerId}/${existing.repository.name}/issues/${existing.number}`
+    );
 
     return { success: true, data: { id } };
   } catch (error) {

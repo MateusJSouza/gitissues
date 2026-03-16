@@ -4,18 +4,18 @@ Clone do sistema de issues do GitHub, construído com Next.js 14 App Router.
 
 ## Stack
 
-| Camada | Tecnologia |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Linguagem | TypeScript (strict mode, sem `any`) |
-| ORM | Prisma 5 |
-| Banco | PostgreSQL via Neon (connection pooling + DIRECT_URL) |
-| Auth | NextAuth v5 beta — GitHub OAuth + PrismaAdapter |
-| UI | Shadcn/ui + Tailwind CSS + lucide-react |
-| Formulários | react-hook-form + Zod |
-| Markdown | @uiw/react-md-editor |
-| Dark mode | next-themes |
-| Package manager | **pnpm** |
+| Camada          | Tecnologia                                            |
+| --------------- | ----------------------------------------------------- |
+| Framework       | Next.js 14 (App Router)                               |
+| Linguagem       | TypeScript (strict mode, sem `any`)                   |
+| ORM             | Prisma 5                                              |
+| Banco           | PostgreSQL via Neon (connection pooling + DIRECT_URL) |
+| Auth            | NextAuth v5 beta — GitHub OAuth + PrismaAdapter       |
+| UI              | Shadcn/ui + Tailwind CSS + lucide-react               |
+| Formulários     | react-hook-form + Zod                                 |
+| Markdown        | @uiw/react-md-editor                                  |
+| Dark mode       | next-themes                                           |
+| Package manager | **pnpm**                                              |
 
 ## Comandos
 
@@ -78,22 +78,26 @@ gitissues/
 ## Convenções obrigatórias
 
 ### Componentes
+
 - **Server Components por padrão** — sem `'use client'` a menos que seja necessário (hooks, eventos, estado)
 - Dados são buscados diretamente no Server Component com `async/await`, sem `useEffect`
 - `'use client'` explícito e justificado: formulários (react-hook-form), toggles de estado, callbacks de browser
 
 ### Nomenclatura
+
 - Arquivos: `kebab-case.ts` / `kebab-case.tsx`
 - Componentes React: `PascalCase`
 - Server Actions: sufixo `.actions.ts`
 - Variáveis de ambiente: `SCREAMING_SNAKE_CASE`
 
 ### TypeScript
+
 - `strict: true` — sem `any`, sem `@ts-ignore` sem justificativa
 - Tipos de retorno explícitos em Server Actions
 - Types exportados junto dos schemas Zod via `z.infer<typeof schema>`
 
 ### Server Actions
+
 Todo action segue este contrato:
 
 ```ts
@@ -116,18 +120,19 @@ export async function minhaAction(input: MeuInput): Promise<ActionResult<MeuReto
 ```
 
 O tipo `ActionResult<T>` está em `types/index.ts`:
+
 ```ts
-type ActionResult<T = undefined> =
-  | { success: true; data: T }
-  | { success: false; error: string };
+type ActionResult<T = undefined> = { success: true; data: T } | { success: false; error: string };
 ```
 
 ### Prisma
+
 - Sempre usar `select` ou `include` explícitos — nunca retornar o modelo inteiro desnecessariamente
 - Após qualquer escrita, chamar `revalidatePath()` com as rotas afetadas
 - Rodar `pnpm db:generate` após qualquer alteração no `schema.prisma`
 
 ### Shadcn/ui
+
 - Adicionar novos componentes via CLI: `pnpm dlx shadcn@latest add <componente>`
 - Os componentes ficam em `components/ui/`
 - Dependências base já instaladas: `@radix-ui/react-slot`, `class-variance-authority`, `clsx`, `tailwind-merge`
@@ -147,6 +152,7 @@ AUTH_GITHUB_SECRET  # GitHub OAuth App Client Secret
 ## Banco de dados
 
 ### Models principais
+
 - `User` — usuário autenticado via GitHub
 - `Repository` — repositório de issues (único por `ownerId + name`)
 - `Issue` — issue com status `OPEN | CLOSED`, número sequencial por repositório
@@ -155,6 +161,7 @@ AUTH_GITHUB_SECRET  # GitHub OAuth App Client Secret
 - `Account`, `Session`, `VerificationToken` — exigidos pelo NextAuth
 
 ### Índices relevantes
+
 - `Issue`: `(repositoryId)`, `(status)`, `(repositoryId, status)` — queries de listagem
 - `Issue`: `@@unique([repositoryId, number])` — garante número único por repo
 - `Repository`: `@@unique([ownerId, name])` — garante nome único por usuário
@@ -167,6 +174,7 @@ Deve ser chamada por um cron job externo (ex: cron-job.org) a cada ~5 minutos pa
 ## Middleware
 
 Protege todas as rotas exceto:
+
 - `/login`
 - `/api/auth/**`
 - `/api/health`

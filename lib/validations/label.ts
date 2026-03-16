@@ -4,10 +4,7 @@ import { z } from "zod";
 const hexColorRegex = /^#[0-9a-fA-F]{6}$/;
 
 export const createLabelSchema = z.object({
-  name: z
-    .string()
-    .min(1, "Nome é obrigatório")
-    .max(50, "Nome deve ter no máximo 50 caracteres"),
+  name: z.string().min(1, "Nome é obrigatório").max(50, "Nome deve ter no máximo 50 caracteres"),
   color: z
     .string()
     .regex(hexColorRegex, "Cor deve estar no formato hexadecimal (#rrggbb)")

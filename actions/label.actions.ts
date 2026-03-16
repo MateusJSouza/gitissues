@@ -13,9 +13,7 @@ import { revalidatePath } from "next/cache";
 
 // ─── createLabel ──────────────────────────────────────────────────────────────
 
-export async function createLabel(
-  input: CreateLabelInput
-): Promise<ActionResult<Label>> {
+export async function createLabel(input: CreateLabelInput): Promise<ActionResult<Label>> {
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -55,9 +53,7 @@ export async function createLabel(
 
 // ─── updateLabel ──────────────────────────────────────────────────────────────
 
-export async function updateLabel(
-  input: UpdateLabelInput
-): Promise<ActionResult<Label>> {
+export async function updateLabel(input: UpdateLabelInput): Promise<ActionResult<Label>> {
   try {
     const session = await auth();
     if (!session?.user?.id) {

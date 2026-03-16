@@ -52,9 +52,7 @@ export function NewIssueForm({ repositoryId, labels, collaborators }: NewIssueFo
           placeholder="Título da issue"
           className="flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         />
-        {errors.title && (
-          <p className="text-xs text-destructive">{errors.title.message}</p>
-        )}
+        {errors.title && <p className="text-xs text-destructive">{errors.title.message}</p>}
       </div>
 
       {/* Corpo (Markdown) — TODO: substituir textarea por @uiw/react-md-editor */}
@@ -67,7 +65,7 @@ export function NewIssueForm({ repositoryId, labels, collaborators }: NewIssueFo
           {...register("body")}
           rows={10}
           placeholder="Descreva a issue em Markdown..."
-          className="flex min-h-[120px] w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring resize-y"
+          className="flex min-h-[120px] w-full resize-y rounded-md border bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         />
       </div>
 
@@ -77,7 +75,7 @@ export function NewIssueForm({ repositoryId, labels, collaborators }: NewIssueFo
           <label className="text-sm font-medium">Labels</label>
           <div className="flex flex-wrap gap-2">
             {labels.map((label) => (
-              <label key={label.id} className="flex items-center gap-1.5 cursor-pointer">
+              <label key={label.id} className="flex cursor-pointer items-center gap-1.5">
                 <input type="checkbox" value={label.id} {...register("labelIds")} />
                 <span
                   className="rounded-full px-2 py-0.5 text-xs font-medium"

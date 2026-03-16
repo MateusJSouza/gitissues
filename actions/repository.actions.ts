@@ -2,10 +2,7 @@
 
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import {
-  createRepositorySchema,
-  type CreateRepositoryInput,
-} from "@/lib/validations";
+import { createRepositorySchema, type CreateRepositoryInput } from "@/lib/validations";
 import type { ActionResult, RepositoryWithOwner } from "@/types";
 import { revalidatePath } from "next/cache";
 

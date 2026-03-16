@@ -27,20 +27,18 @@ export function IssueBody({ issue }: IssueBodyProps) {
           <strong>{issue.author.name}</strong>
           <span className="text-muted-foreground">
             comentou em{" "}
-            {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(
-              issue.createdAt
-            )}
+            {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(issue.createdAt)}
           </span>
         </div>
       </div>
 
       {/* Conteúdo */}
-      <div className="prose prose-sm dark:prose-invert max-w-none p-4">
+      <div className="prose prose-sm max-w-none p-4 dark:prose-invert">
         {issue.body ? (
           // TODO: renderizar Markdown com react-markdown ou @uiw/react-md-editor preview mode
           <pre className="whitespace-pre-wrap font-sans text-sm">{issue.body}</pre>
         ) : (
-          <p className="text-muted-foreground italic">Sem descrição.</p>
+          <p className="italic text-muted-foreground">Sem descrição.</p>
         )}
       </div>
     </div>

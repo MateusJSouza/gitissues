@@ -34,8 +34,7 @@ export default async function IssuesPage({ params, searchParams }: IssuesPagePro
 
   if (!repository) notFound();
 
-  const status: IssueStatus =
-    filters.status === "CLOSED" ? "CLOSED" : "OPEN";
+  const status: IssueStatus = filters.status === "CLOSED" ? "CLOSED" : "OPEN";
 
   const issues = await prisma.issue.findMany({
     where: {
@@ -111,13 +110,11 @@ export default async function IssuesPage({ params, searchParams }: IssuesPagePro
             <li key={issue.id}>
               <Link
                 href={`${basePath}/${issue.number}`}
-                className="flex items-start gap-3 p-4 hover:bg-muted/50 transition-colors"
+                className="flex items-start gap-3 p-4 transition-colors hover:bg-muted/50"
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-medium text-foreground truncate">
-                      {issue.title}
-                    </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="truncate font-medium text-foreground">{issue.title}</span>
                     {issue.labels.map((label) => (
                       <span
                         key={label.id}
@@ -133,8 +130,8 @@ export default async function IssuesPage({ params, searchParams }: IssuesPagePro
                     ))}
                   </div>
                   <p className="mt-0.5 text-xs text-muted-foreground">
-                    #{issue.number} aberta por {issue.author.name} ·{" "}
-                    {issue._count.comments} comentário
+                    #{issue.number} aberta por {issue.author.name} · {issue._count.comments}{" "}
+                    comentário
                     {issue._count.comments !== 1 ? "s" : ""}
                   </p>
                 </div>

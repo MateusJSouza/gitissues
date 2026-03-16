@@ -14,17 +14,13 @@ export default function LoginPage() {
         {/* Logo / Título */}
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">GitIssues</h1>
-          <p className="text-sm text-muted-foreground">
-            Gerencie issues dos seus projetos
-          </p>
+          <p className="text-sm text-muted-foreground">Gerencie issues dos seus projetos</p>
         </div>
 
         {/* Card de login */}
         <div className="rounded-lg border bg-card p-6 shadow-sm">
           <div className="flex flex-col space-y-4">
-            <p className="text-center text-sm text-muted-foreground">
-              Faça login para continuar
-            </p>
+            <p className="text-center text-sm text-muted-foreground">Faça login para continuar</p>
 
             {/* Server Action para iniciar o fluxo OAuth */}
             <form

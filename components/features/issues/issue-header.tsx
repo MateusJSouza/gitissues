@@ -29,8 +29,7 @@ export function IssueHeader({ issue, isOwner }: IssueHeaderProps) {
     <div className="space-y-2">
       <div className="flex items-start justify-between gap-4">
         <h1 className="text-2xl font-bold leading-tight">
-          {issue.title}{" "}
-          <span className="text-muted-foreground font-normal">#{issue.number}</span>
+          {issue.title} <span className="font-normal text-muted-foreground">#{issue.number}</span>
         </h1>
 
         {isOwner && (
@@ -41,11 +40,7 @@ export function IssueHeader({ issue, isOwner }: IssueHeaderProps) {
             size="sm"
             className="shrink-0"
           >
-            {isPending
-              ? "Aguarde..."
-              : issue.status === "OPEN"
-              ? "Fechar Issue"
-              : "Reabrir Issue"}
+            {isPending ? "Aguarde..." : issue.status === "OPEN" ? "Fechar Issue" : "Reabrir Issue"}
           </Button>
         )}
       </div>
@@ -62,9 +57,7 @@ export function IssueHeader({ issue, isOwner }: IssueHeaderProps) {
         </span>
         <span>
           Aberta por <strong>{issue.author.name}</strong> ·{" "}
-          {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(
-            issue.createdAt
-          )}
+          {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(issue.createdAt)}
         </span>
       </div>
     </div>

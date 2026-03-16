@@ -30,8 +30,7 @@ export default async function DashboardPage() {
         <div>
           <h1 className="text-2xl font-bold">Seus Repositórios</h1>
           <p className="text-sm text-muted-foreground">
-            {repositories.length}{" "}
-            {repositories.length === 1 ? "repositório" : "repositórios"}
+            {repositories.length} {repositories.length === 1 ? "repositório" : "repositórios"}
           </p>
         </div>
 
@@ -72,9 +71,7 @@ export default async function DashboardPage() {
               )}
               <p className="mt-3 text-xs text-muted-foreground">
                 Criado em{" "}
-                {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(
-                  repo.createdAt
-                )}
+                {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(repo.createdAt)}
               </p>
             </Link>
           ))}
